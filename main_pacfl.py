@@ -442,30 +442,30 @@ for iteration in range(args.rounds):
     elif iteration%args.print_freq == 0: 
         print_flag = True
         
-    if print_flag:
-        print('--- PRINTING ALL CLIENTS STATUS ---')
-        current_acc = []
-        for k in range(args.num_users):
-            loss, acc = clients[k].eval_test() 
-            current_acc.append(acc)
+    # if print_flag:
+    #     print('--- PRINTING ALL CLIENTS STATUS ---')
+    #     current_acc = []
+    #     for k in range(args.num_users):
+    #         loss, acc = clients[k].eval_test() 
+    #         current_acc.append(acc)
             
-            template = ("Client {:3d}, labels {}, count {}, best_acc {:3.3f}, current_acc {:3.3f} \n")
-            print(template.format(k, traindata_cls_counts[k], clients[k].get_count(),
-                                  clients_best_acc[k], current_acc[-1]))
+    #         template = ("Client {:3d}, labels {}, count {}, best_acc {:3.3f}, current_acc {:3.3f} \n")
+    #         print(template.format(k, traindata_cls_counts[k], clients[k].get_count(),
+    #                               clients_best_acc[k], current_acc[-1]))
             
-        template = ("Round {:1d}, Avg current_acc {:3.3f}, Avg best_acc {:3.3f}")
-        print(template.format(iteration+1, np.mean(current_acc), np.mean(clients_best_acc)))
+    #     template = ("Round {:1d}, Avg current_acc {:3.3f}, Avg best_acc {:3.3f}")
+    #     print(template.format(iteration+1, np.mean(current_acc), np.mean(clients_best_acc)))
         
-        ckp_avg_tacc.append(np.mean(current_acc))
-        ckp_avg_best_tacc.append(np.mean(clients_best_acc))
+    #     ckp_avg_tacc.append(np.mean(current_acc))
+    #     ckp_avg_best_tacc.append(np.mean(clients_best_acc))
     
-    print('----- Analysis End of Round -------')
-    for idx in idxs_users:
-        print(f'Client {idx}, Count: {clients[idx].get_count()}, Labels: {traindata_cls_counts[idx]}')
+    # print('----- Analysis End of Round -------')
+    # for idx in idxs_users:
+    #     print(f'Client {idx}, Count: {clients[idx].get_count()}, Labels: {traindata_cls_counts[idx]}')
        
-    print('')
-    print(f'Clusters {idx_clusters_round}')
-    print('')
+    # print('')
+    # print(f'Clusters {idx_clusters_round}')
+    # print('')
     
     loss_train.append(loss_avg)
     
