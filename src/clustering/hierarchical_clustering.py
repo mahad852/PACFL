@@ -47,7 +47,7 @@ def hierarchical_clustering(A, thresh=1.5, linkage='maximum'):
     
     step = 0
     while A.shape[0] > 1:
-        np.fill_diagonal(A,-np.NINF)
+        np.fill_diagonal(A,np.inf)
         #print(f'step {step} \n {A}')
         step+=1
         ind=np.unravel_index(np.argmin(A, axis=None), A.shape)
