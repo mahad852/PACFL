@@ -248,7 +248,7 @@ for idx in range(args.num_users):
     
     uni_labels, cnt_labels = np.unique(labels_local, return_counts=True)
     
-    print(f'Labels: {uni_labels}, Counts: {cnt_labels}')
+    # print(f'Labels: {uni_labels}, Counts: {cnt_labels}')
     
     nlabels = len(uni_labels)
     cnt = 0
@@ -281,7 +281,7 @@ for idx in range(args.num_users):
     #U_temp = [u1_temp[:, 0:K], u2_temp[:, 0:K]]
     U_clients.append(copy.deepcopy(np.hstack(U_temp)))
     
-    print(f'Shape of U: {U_clients[-1].shape}')
+    # print(f'Shape of U: {U_clients[-1].shape}')
     
     clients.append(Client_ClusterFL(idx, copy.deepcopy(users_model[idx]), args.local_bs, args.local_ep, 
                args.lr, args.momentum, args.device, train_dl_local, test_dl_local))
@@ -296,8 +296,8 @@ for r in range(1):
     print(f'Round {r}')
     clients_idxs = np.arange(cnt)
     #clients_idxs = np.arange(10)
-    for idx in clients_idxs:
-        print(f'Client {idx}, Labels: {traindata_cls_counts[idx]}')
+    # for idx in clients_idxs:
+    #     print(f'Client {idx}, Labels: {traindata_cls_counts[idx]}')
 
     adj_mat = calculating_adjacency(clients_idxs, U_clients)
     clusters = hierarchical_clustering(copy.deepcopy(adj_mat), thresh=args.cluster_alpha, linkage=args.linkage)
@@ -311,9 +311,10 @@ for r in range(1):
     print('')
     print(f'Number of Clusters {len(clusters)}')
     print('')
-    for jj in range(len(clusters)):
-        print(f'Cluster {jj}: {len(clusters[jj])} Users')
+    # for jj in range(len(clusters)):
+    #     print(f'Cluster {jj}: {len(clusters[jj])} Users')
         
+exit()
 
 clients_clust_id = {i:None for i in range(args.num_users)}
 for i in range(args.num_users):

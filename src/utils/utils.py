@@ -400,7 +400,7 @@ def partition_data(dataset, datadir, logdir, partition, n_parties, beta=0.4, loc
         else:
             K = 10
             
-        print(f'K: {K}')
+        # print(f'K: {K}')
         if num == 10:
             net_dataidx_map ={i:np.ndarray(0,dtype=np.int64) for i in range(n_parties)}
             for i in range(10):
@@ -434,7 +434,7 @@ def partition_data(dataset, datadir, logdir, partition, n_parties, beta=0.4, loc
                         net_dataidx_map[j]=np.append(net_dataidx_map[j],split[ids])
                         ids+=1
     elif partition > "noniid1-#label0" and partition <= "noniid1-#label9":
-        print('Modified Non-IID partitioning')
+        # print('Modified Non-IID partitioning')
         num = eval(partition[14:])
         if dataset in ('celeba', 'covtype', 'a9a', 'rcv1', 'SUSY'):
             num = 1
@@ -446,7 +446,7 @@ def partition_data(dataset, datadir, logdir, partition, n_parties, beta=0.4, loc
         else:
             K = 10
             
-        print(f'Dataset {dataset}, K: {K}, {partition}')
+        # print(f'Dataset {dataset}, K: {K}, {partition}')
         if num == 10:
             net_dataidx_map ={i:np.ndarray(0,dtype=np.int64) for i in range(n_parties)}
             for i in range(10):
@@ -532,9 +532,9 @@ def partition_data(dataset, datadir, logdir, partition, n_parties, beta=0.4, loc
             for j in batch_idxs[i]:
                 net_dataidx_map[i]=np.append(net_dataidx_map[i], np.arange(user[j], user[j+1]))
     
-    print(f'partition: {partition}')
+    # print(f'partition: {partition}')
     traindata_cls_counts = record_net_data_stats(y_train, net_dataidx_map, logdir)
-    print('Data statistics Train:\n %s \n' % str(traindata_cls_counts))
+    # print('Data statistics Train:\n %s \n' % str(traindata_cls_counts))
     
     if local_view:
         net_dataidx_map_test = {i: [] for i in range(n_parties)}
@@ -545,7 +545,7 @@ def partition_data(dataset, datadir, logdir, partition, n_parties, beta=0.4, loc
                 net_dataidx_map_test[k_id].extend(idx_k.tolist())
 
         testdata_cls_counts = record_net_data_stats(y_test, net_dataidx_map_test, logdir)
-        print('Data statistics Test:\n %s \n' % str(testdata_cls_counts))
+        # print('Data statistics Test:\n %s \n' % str(testdata_cls_counts))
     else: 
         net_dataidx_map_test = None 
         testdata_cls_counts = None 
